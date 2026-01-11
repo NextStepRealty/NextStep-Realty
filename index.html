@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextStep Realty | Professional Real Estate Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #0a192f;
+            --accent-color: #c5a059;
+            --accent-light: #d4b376;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --bg-light: #f8f9fa;
+            --facebook-color: #1877F2;
+            --gmail-color: #DB4437;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Animated Background Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(197, 160, 89, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            background: rgba(10, 25, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        nav.scrolled {
+            padding: 15px 5%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--accent-color);
+            transition: 0.3s;
+            border-radius: 3px;
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.9), rgba(197, 160, 89, 0.3)), 
+                        url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 0 20px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 5rem);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            font-weight: 900;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .btn-main {
+            padding: 15px 45px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.4s;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-main:hover::before {
+            left: 100%;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(197, 160, 89, 0.5);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 10%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 6vw, 3rem);
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .section-title h2::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: 0.4s;
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+            transform: scaleX(0);
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(197, 160, 89, 0.3);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card i {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        .card:hover i {
+            transform: scale(1.1) rotateY(360deg);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* About Section */
+        .about-flex {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .about-text { 
+            flex: 1; 
+            min-width: 300px; 
+        }
+        
+        .about-img { 
+            flex: 1; 
+            min-width: 300px; 
+            position: relative;
+        }
+        
+        .about-img img { 
+            width: 100%; 
+            border-radius: 30px; 
+            box-shadow: 20px 20px 0 var(--accent-color);
+            display: block;
+            transition: 0.4s;
+        }
+
+        .about-img:hover img {
+            transform: translate(-10px, -10px);
+            box-shadow: 30px 30px 0 var(--accent-color);
+        }
+
+        /* Client Section */
+        .client-section {
+            background: linear-gradient(135deg, var(--bg-light), #fff);
+        }
+
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .client-card {
+            background: white;
+            padding: 50px 35px;
+            border-radius: 25px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .client-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.1), transparent);
+            transition: 0.6s;
+        }
+
+        .client-card:hover::before {
+            left: 100%;
+        }
+
+        .client-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px rgba(197, 160, 89, 0.3);
+        }
+
+        .client-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
+            transition: 0.4s;
+        }
+
+        .client-card:hover .client-icon {
+            transform: rotateY(360deg) scale(1.1);
+        }
+
+        .client-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .client-card h3 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .client-card .regions {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin: 20px 0 15px;
+            line-height: 1.8;
+        }
+
+        .client-card .description {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .client-card.global {
+            border: 2px solid rgba(197, 160, 89, 0.3);
+        }
+
+        /* Mission & Vision */
+        .vision-mission {
+            background: linear-gradient(135deg, var(--primary-color), #1a2f4f);
+            color: white;
+        }
+
+        .vision-mission h2 { 
+            color: white; 
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .vision-mission ul li { 
+            margin-bottom: 12px; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
+
+        /* Footer */
+        footer {
+            background: #050c16;
+            color: white;
+            text-align: center;
+            padding: 80px 20px 40px;
+            position: relative;
+        }
+
+        footer h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Creative Social Icons */
+        .social-icons {
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .social-icons a {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(45deg, transparent, transparent);
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: 0.4s;
+        }
+
+        .social-icons a i {
+            font-size: 1.6rem;
+            color: white;
+            z-index: 1;
+            transition: 0.4s;
+        }
+
+        .social-icons a.fb::before {
+            background: linear-gradient(135deg, transparent, var(--facebook-color));
+        }
+
+        .social-icons a.fb:hover {
+            transform: translateY(-10px) rotate(360deg);
+        }
+
+        .social-icons a.fb:hover::before {
+            background: var(--facebook-color);
+            box-shadow: 0 0 30px var(--facebook-color);
+            border-color: var(--facebook-color);
+        }
+
+        .social-icons a.gm::before {
+            background: linear-gradient(135deg, transparent, var(--gmail-color));
+        }
+
+        .social-icons a.gm:hover {
+            transform: translateY(-10px) rotate(360deg);
+        }
+
+        .social-icons a.gm:hover::before {
+            background: var(--gmail-color);
+            box-shadow: 0 0 30px var(--gmail-color);
+            border-color: var(--gmail-color);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 65px;
+            height: 65px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366, #128C7E);
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.4s;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 5px 25px rgba(37, 211, 102, 0.5); }
+            50% { box-shadow: 0 5px 40px rgba(37, 211, 102, 0.8); }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15) rotate(15deg);
+            background: linear-gradient(135deg, #128C7E, #075E54);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s all cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: rgba(10, 25, 47, 0.98);
+                width: 70%;
+                padding: 30px;
+                border-radius: 20px 0 0 20px;
+                transition: 0.4s;
+                gap: 20px;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            section { 
+                padding: 60px 5%; 
+            }
+
+            .about-flex { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+
+            .about-text .section-title { 
+                text-align: center !important; 
+            }
+
+            .about-img img { 
+                box-shadow: 15px 15px 0 var(--accent-color); 
+            }
+
+            .whatsapp-float { 
+                width: 55px; 
+                height: 55px; 
+                bottom: 20px; 
+                right: 20px; 
+                font-size: 28px; 
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            header {
+                background-attachment: scroll;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .client-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-icons a {
+                width: 50px;
+                height: 50px;
+            }
+
+            .social-icons a i {
+                font-size: 1.3rem;
+            }
+
+            .client-card {
+                padding: 40px 25px;
+            }
+
+            .client-icon {
+                width: 70px;
+                height: 70px;
+            }
+
+            .client-icon i {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="logo">NextStep</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <header>
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <h1>NextStep Realty</h1>
+            <p>Guiding buyers and sellers through their next step with confidence.</p>
+            <a href="#about" class="btn-main">Discover More</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="about-flex reveal">
+            <div class="about-text">
+                <div class="section-title" style="text-align: left;">
+                    <h2>Who We Are</h2>
+                </div>
+                <p><strong>NextStep Realty</strong> is a professional real estate agency focused on making the buying and selling of property simple, structured, and stress-free.</p>
+                <br>
+                <p>We work with property owners, developers, buyers, and investors across all segments of the real estate market. Our role is to connect genuine buyers with genuine sellers and to support transactions with clarity and professionalism.</p>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Real Estate Professional">
+            </div>
+        </div>
+    </section>
+
+    <section class="client-section">
+        <div class="section-title reveal">
+            <h2>Why We Exist</h2>
+            <p>Property transactions are complex. We are here to simplify them.</p>
+        </div>
+        <div class="grid-3 reveal">
+            <div class="card">
+                <i class="fas fa-layer-group"></i>
+                <h3>Simplifying Process</h3>
+                <p>Reducing complexity in every step of the transaction.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-comments"></i>
+                <h3>Clear Communication</h3>
+                <p>Reducing confusion and information gaps for all parties.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-bolt"></i>
+                <h3>Efficiency</h3>
+                <p>Helping transactions progress smoothly and professionally.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="section-title reveal">
+            <h2>What We Do</h2>
+        </div>
+        <div class="grid-3 reveal">
+            <div class="card">
+                <i class="fas fa-home"></i>
+                <h3>Full Segment Agency</h3>
+                <p>Residential, Condominiums, Estates, and Leisure properties.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-handshake"></i>
+                <h3>Transaction Facilitation</h3>
+                <p>Connecting genuine buyers and sellers with expert guidance.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Meeting Coordination</h3>
+                <p>Arranging viewings, site visits, and professional follow-ups.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="client-section">
+        <div class="section-title reveal">
+            <h2>Our Client Segment</h2>
+            <p>We serve a diverse range of clients locally and globally.</p>
+        </div>
+        <div class="client-grid reveal">
+            <div class="client-card local">
+                <div class="client-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Local Buyers & Sellers</h3>
+                <p>Serving the local community with personalized real estate solutions.</p>
+            </div>
+            <div class="client-card global">
+                <div class="client-icon">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h3>Overseas Investors</h3>
+                <p class="regions">Europe • Canada • Middle East • Australia • New Zealand</p>
+                <p class="description">Connecting international investors with premium opportunities.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision-mission">
+        <div class="grid-3 reveal">
+            <div>
+                <h2>Our Vision</h2>
+                <p>To be a trusted and dependable real estate agency, recognized for making property transactions simple, transparent, and reliable for all stakeholders.</p>
+            </div>
+            <div>
+                <h2>Our Mission</h2>
+                <ul style="list-style: none; padding-top: 10px;">
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color);"></i> Simplify buying and selling.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color);"></i> Guide with clarity.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color);"></i> Ethical connection of parties.</li>
+                    <li><i class="fas fa-check-circle" style="color: var(--accent-color);"></i> Build long-term trust.</li>
+                </ul>
+            </div>
+            <div>
+                <h2>Our Approach</h2>
+                <p>Relationship-driven, clear communication, ethical conduct, and disciplined engagement.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2>NextStep Realty</h2>
+        <p>Guiding you to your next home with confidence.</p>
+        
+        <div class="social-icons">
+            <a href="https://facebook.com/nextsteprealty" class="fb" target="_blank" title="Follow us on Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="mailto:info@nextsteprealty.com" class="gm" title="Email Us">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+
+        <p style="margin-top: 30px; font-size: 0.85rem; opacity: 0.6;">&copy; 2026 NextStep Realty. All Rights Reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/94775830365?text=Hi%20NextStep%20Realty,%20I'm%20interested%20in%20your%20services." class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Particle animation
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // Scroll reveal animation
+        function reveal() {
+            const reveals = document.querySelectorAll(".reveal");
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
