@@ -477,16 +477,45 @@
         footer h2 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             background: linear-gradient(45deg, #fff, var(--accent-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
+        /* Premium Contact Info Section */
+        .footer-contact-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .contact-item i {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+        }
+
+        .contact-item:hover {
+            color: var(--accent-light);
+            transform: translateY(-3px);
+        }
+
         /* Creative Social Icons */
         .social-icons {
-            margin: 40px 0;
+            margin: 30px 0;
             display: flex;
             justify-content: center;
             gap: 25px;
@@ -635,6 +664,11 @@
                 padding: 60px 5%; 
             }
 
+            .footer-contact-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
             .about-flex { 
                 flex-direction: column; 
                 text-align: center; 
@@ -662,38 +696,6 @@
 
             header {
                 background-attachment: scroll;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .grid-3 {
-                grid-template-columns: 1fr;
-            }
-
-            .client-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .social-icons a {
-                width: 50px;
-                height: 50px;
-            }
-
-            .social-icons a i {
-                font-size: 1.3rem;
-            }
-
-            .client-card {
-                padding: 40px 25px;
-            }
-
-            .client-icon {
-                width: 70px;
-                height: 70px;
-            }
-
-            .client-icon i {
-                font-size: 2rem;
             }
         }
     </style>
@@ -836,11 +838,22 @@
         <h2>NextStep Realty</h2>
         <p>Guiding you to your next home with confidence.</p>
         
+        <div class="footer-contact-container">
+            <a href="tel:+94775830365" class="contact-item">
+                <i class="fas fa-phone-alt"></i>
+                <span>+94 77 583 0365</span>
+            </a>
+            <a href="mailto:info@nextsteprealty.lk" class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>info@nextsteprealty.lk</span>
+            </a>
+        </div>
+
         <div class="social-icons">
-            <a href="https://facebook.com/nextsteprealty" class="fb" target="_blank" title="Follow us on Facebook">
+            <a href="https://www.facebook.com/share/1ATUDKmGkS/?mibextid=wwXIfr" class="fb" target="_blank" title="Follow us on Facebook">
                 <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="mailto:info@nextsteprealty.com" class="gm" title="Email Us">
+            <a href="mailto:info@nextsteprealty.lk" class="gm" title="Email Us">
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
